@@ -6,6 +6,8 @@ class PhotosController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @like = Like.new
     @photo = Photo.find(params.fetch("id_to_display"))
 
     render("photo_templates/show.html.erb")
