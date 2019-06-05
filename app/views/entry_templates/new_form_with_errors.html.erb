@@ -1,0 +1,47 @@
+<% if @entry.present? %>
+  <% if @entry.errors.any? %>
+    <% @entry.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new entry
+</h1>
+
+
+<hr>
+
+<form action="/create_entry" method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="content">
+      Content
+    </label>
+
+    <input type="text" id="content" name="content" class="form-control" value="<%= @entry.content %>">
+  </div>
+
+  <div class="form-group">
+    <label for="image">
+      Image
+    </label>
+
+    <input type="file" id="image" name="image" class="form-control">
+  </div>
+
+  <input type="hidden" name="owner_id" value="<%= current_user.id %>">
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create entry
+  </button>
+</form>
+
+<hr>
+
+<a href="/entries">
+  Go back
+</a>
