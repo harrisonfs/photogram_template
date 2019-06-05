@@ -1,0 +1,44 @@
+<% if @entry.errors.any? %>
+  <% @entry.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit entry #<%= @entry.id %>
+</h1>
+
+<hr>
+
+<form action="/update_entry/<%= @entry.id %>" method="post" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="content">
+      Content
+    </label>
+
+    <input type="text" id="content" name="content" class="form-control" value="<%= @entry.content %>">
+  </div>
+
+  <div class="form-group">
+    <label for="image">
+      Image
+    </label>
+
+    <%= cl_image_tag(@entry.image.to_s, :width => 90, :height => 90, :crop => :thumb) %>
+    <input type="file" id="image" name="image" class="form-control">
+  </div>
+
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update entry
+  </button>
+</form>
+
+<hr>
+
+<a href="/entries">
+  Go back
+</a>

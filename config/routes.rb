@@ -1,89 +1,24 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root :to => "photos#index"
-  # Routes for the Comment resource:
+  root :to => "entries#index"
+  # Routes for the Entry resource:
 
   # CREATE
-  get("/comments/new", { :controller => "comments", :action => "new_form" })
-  post("/create_comment", { :controller => "comments", :action => "create_row" })
-  post("/create_comment_from_photo", { :controller => "comments", :action => "create_row_from_photo" })
+  get("/entries/new", { :controller => "entries", :action => "new_form" })
+  post("/create_entry", { :controller => "entries", :action => "create_row" })
 
   # READ
-  get("/comments", { :controller => "comments", :action => "index" })
-  get("/comments/:id_to_display", { :controller => "comments", :action => "show" })
+  get("/entries", { :controller => "entries", :action => "index" })
+  get("/entries/:id_to_display", { :controller => "entries", :action => "show" })
 
   # UPDATE
-  get("/comments/:prefill_with_id/edit", { :controller => "comments", :action => "edit_form" })
-  post("/update_comment/:id_to_modify", { :controller => "comments", :action => "update_row" })
+  get("/entries/:prefill_with_id/edit", { :controller => "entries", :action => "edit_form" })
+  post("/update_entry/:id_to_modify", { :controller => "entries", :action => "update_row" })
 
   # DELETE
-  get("/delete_comment/:id_to_remove", { :controller => "comments", :action => "destroy_row" })
-  get("/delete_comment_from_photo/:id_to_remove", { :controller => "comments", :action => "destroy_row_from_photo" })
-  get("/delete_comment_from_commenter/:id_to_remove", { :controller => "comments", :action => "destroy_row_from_commenter" })
-
-  #------------------------------
-
-  # Routes for the Follow request resource:
-
-  # CREATE
-  get("/follow_requests/new", { :controller => "follow_requests", :action => "new_form" })
-  post("/create_follow_request", { :controller => "follow_requests", :action => "create_row" })
-
-  # READ
-  get("/follow_requests", { :controller => "follow_requests", :action => "index" })
-  get("/follow_requests/:id_to_display", { :controller => "follow_requests", :action => "show" })
-
-  # UPDATE
-  get("/follow_requests/:prefill_with_id/edit", { :controller => "follow_requests", :action => "edit_form" })
-  post("/update_follow_request/:id_to_modify", { :controller => "follow_requests", :action => "update_row" })
-
-  # DELETE
-  get("/delete_follow_request/:id_to_remove", { :controller => "follow_requests", :action => "destroy_row" })
-  get("/delete_follow_request_from_recipient/:id_to_remove", { :controller => "follow_requests", :action => "destroy_row_from_recipient" })
-  get("/delete_follow_request_from_sender/:id_to_remove", { :controller => "follow_requests", :action => "destroy_row_from_sender" })
-
-  #------------------------------
-
-  # Routes for the Like resource:
-
-  # CREATE
-  get("/likes/new", { :controller => "likes", :action => "new_form" })
-  post("/create_like", { :controller => "likes", :action => "create_row" })
-  post("/create_like_from_photo", { :controller => "likes", :action => "create_row_from_photo" })
-
-  # READ
-  get("/likes", { :controller => "likes", :action => "index" })
-  get("/likes/:id_to_display", { :controller => "likes", :action => "show" })
-
-  # UPDATE
-  get("/likes/:prefill_with_id/edit", { :controller => "likes", :action => "edit_form" })
-  post("/update_like/:id_to_modify", { :controller => "likes", :action => "update_row" })
-
-  # DELETE
-  get("/delete_like/:id_to_remove", { :controller => "likes", :action => "destroy_row" })
-  get("/delete_like_from_photo/:id_to_remove", { :controller => "likes", :action => "destroy_row_from_photo" })
-  get("/delete_like_from_user/:id_to_remove", { :controller => "likes", :action => "destroy_row_from_user" })
-
-  #------------------------------
-
-  # Routes for the Photo resource:
-
-  # CREATE
-  get("/photos/new", { :controller => "photos", :action => "new_form" })
-  post("/create_photo", { :controller => "photos", :action => "create_row" })
-
-  # READ
-  get("/photos", { :controller => "photos", :action => "index" })
-  get("/photos/:id_to_display", { :controller => "photos", :action => "show" })
-
-  # UPDATE
-  get("/photos/:prefill_with_id/edit", { :controller => "photos", :action => "edit_form" })
-  post("/update_photo/:id_to_modify", { :controller => "photos", :action => "update_row" })
-
-  # DELETE
-  get("/delete_photo/:id_to_remove", { :controller => "photos", :action => "destroy_row" })
-  get("/delete_photo_from_owner/:id_to_remove", { :controller => "photos", :action => "destroy_row_from_owner" })
+  get("/delete_entry/:id_to_remove", { :controller => "entries", :action => "destroy_row" })
+  get("/delete_entry_from_owner/:id_to_remove", { :controller => "entries", :action => "destroy_row_from_owner" })
 
   #------------------------------
 

@@ -1,0 +1,73 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Entry #<%= @entry.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/entries" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <% if current_user == @entry.owner %>
+          <a href="/entries/<%= @entry.id %>/edit" class="btn btn-block btn-sm btn-outline-secondary">
+            Edit entry
+          </a>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <% if current_user == @entry.owner %>
+          <a href="/delete_entry/<%= @entry.id %>" class="btn btn-block btn-sm btn-outline-secondary">
+            Delete entry
+          </a>
+        <% end %>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Content
+      </dt>
+      <dd>
+        <%= @entry.content %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <img src="<%= @entry.image %>" class="img-fluid">
+      </dd>
+
+      <dt>
+        Owner
+      </dt>
+      <dd>
+        <% if @entry.owner.present? %>
+          <a href="/users/<%= @entry.owner_id %>">
+            <%= @entry.owner.username %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@entry.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@entry.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
